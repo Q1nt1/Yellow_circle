@@ -1,19 +1,18 @@
 import sys
 from random import randrange
 
-from PyQt6 import uic  # Импортируем uic
 from PyQt6.QtGui import QPainter, QColor
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton
 
 
 class MyWidget(QMainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('Ui.ui', self)  # Загружаем дизайн
+        self.layout = QVBoxLayout()
         self.setFixedSize(600, 600)
         self.do_paint = False
-        self.pushButton.clicked.connect(self.paint)
-        # Обратите внимание: имя элемента такое же как в QTDesigner
+        self.btn = QPushButton('Clicked', self)
+        self.btn.clicked.connect(self.paint)
 
     def paintEvent(self, event):
         if self.do_paint:
